@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet, FlatList, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import PageSettingsLayout from "../PageSettigsLayout/PageSettigsLayout";
 import NavMenu from "../../components/NavMenu";
 import APIhendler from "../../api/APIhendler";
 import WorkoutPreview from "./WorkoutPreview";
@@ -22,7 +21,6 @@ const WorkoutsPage = ({ navigation }) => {
   }, []);
 
   return (
-    <PageSettingsLayout navigation={navigation}>
       <SafeAreaView style={styles.container}>
       <FlatList
           style={styles.list}
@@ -30,10 +28,10 @@ const WorkoutsPage = ({ navigation }) => {
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <WorkoutPreview Workout={item} />}
           contentContainerStyle={styles.flatListContainer}
+          numColumns={2}
         />
         <NavMenu navigation={navigation} />
       </SafeAreaView>
-    </PageSettingsLayout>
   );
 };
 
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
   },
   list:{
     marginTop:"20px",
-    marginBottom:"20px"
+    marginBottom:"80px"
   },
   workoutImage: {
     height:"200px",
