@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import { decode } from "base-64";
 import { StyleSheet } from "react-native";
 import NavMenu from "../components/NavMenu";
-import PageSettingsLayout from "./PageSettigsLayout/PageSettigsLayout";
 
 const HomePage = ({ navigation }) => {
   const user = useSelector((state) => state.userReducer.user);
@@ -18,7 +17,6 @@ const HomePage = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{display:"flex",height:"100%"}}>
-      <PageSettingsLayout navigation={navigation}>
       <View style={styles.main}>
         <View style={{flexGrow:1}}>
         {decodedImage && (
@@ -46,7 +44,6 @@ const HomePage = ({ navigation }) => {
         </View>
         <NavMenu navigation={navigation}></NavMenu>
       </View>
-      </PageSettingsLayout>
     </SafeAreaView>
   );
 };
