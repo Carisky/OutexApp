@@ -11,7 +11,6 @@ exports.seed = async function(knex) {
   // Insert a default user
   await knex('users').insert({
     email: 'root',
-    birthdate: '2000-01-01',  // Set a default birthdate
     password: 'root',  // Replace with a hashed password
     username: 'root',
     description: 'Default user description',

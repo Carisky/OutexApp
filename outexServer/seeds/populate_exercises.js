@@ -4,7 +4,7 @@ const path = require('path');
 const csvParse = require('csv-parse/lib/sync');
 
 exports.seed = async function(knex) {
-  /*const exercisesPath = path.join(__dirname, '../public/uploads/Exercises');
+  const exercisesPath = path.join(__dirname, '../public/uploads/Exercises');
 
   // Функция для получения данных из CSV файла
   const readCsvFile = (filePath) => {
@@ -25,18 +25,19 @@ exports.seed = async function(knex) {
 
     const exerciseData = readCsvFile(exerciseCsvPath);
     const exerciseNNData = readCsvFile(exerciseNNDataPath);
-    console.log(exerciseFile);
+    const relativeVideoPath = path.relative(__dirname, exerciseVideoPath).replace("..\\", '');
+    const correctedVideoURL = relativeVideoPath.replace(/\\/g, '/');
+    console.log(correctedVideoURL);
 
     try {
       // Use await to wait for the insertion to complete
-      await knex('exercises').insert({
+      await knex('exsercises').insert({
         name: exerciseFile,
-        video_url: exerciseVideoPath,
+        video_url: correctedVideoURL,
       });
       console.log(`Inserted data for ${exerciseFile}`);
     } catch (error) {
       console.error(`Error inserting data for ${exerciseFile}: ${error.message}`);
     }
   }
-  */
 };

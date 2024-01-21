@@ -1,5 +1,7 @@
 const fs = require('fs').promises; // Using promises version for async operations
 const path = require('path');
+const csvParse = require('csv-parse/lib/sync');
+
 
 /**
  * @param { import("knex").Knex } knex
@@ -18,22 +20,14 @@ exports.seed = async function(knex) {
     for (const Dir of trainingsDirs) {
       const filesDirPath = path.join(trainingsPath, Dir);
       const files = await fs.readdir(filesDirPath);
-
-      // Filter only .jpg files
-      const jpgFiles = files
-        .filter(file => file.toLowerCase().endsWith('.jpg'))
-        .map(jpgFile => path.join(filesDirPath, jpgFile));
-
-      console.log(jpgFiles);
-
+    
+      const jpgFile = files.find(file => file.toLowerCase().endsWith('.jpg'));
+      const csvFile = files.find(file => file.toLowerCase().endsWith('relations.csv'));
+    
       try {
-        // Use path.relative to get the relative path from the public directory
-        const relativeImagePath = path.relative(publicPath, jpgFiles[0]);
-
-        // Adjust the relative path to include the 'public' directory
+        const relativeImagePath = path.relative(publicPath, jpgFile);
         const imagePathWithPublic = path.join('public', relativeImagePath);
         const correctedURL = imagePathWithPublic.replace(/\\/g, '/');
-        // Use await to wait for the insertion to complete
         await knex('workouts').insert({
           name: Dir,
           image_url: correctedURL,
@@ -42,9 +36,44 @@ exports.seed = async function(knex) {
       } catch (error) {
         console.error(`Error inserting data for ${Dir}: ${error.message}`);
       }
-
+    
+      if (csvFile) {
+        const csvFilePath = path.join(filesDirPath, csvFile);
+        try {
+          const csvData = await fs.readFile(csvFilePath, 'utf-8');
+          const parsedCsv = csvParse(csvData, { columns: true });
+    
+          for (const csvRow of parsedCsv) {
+            const { Name, Duration, Repeats } = csvRow;
+    
+            // Find the corresponding workout and exercise IDs
+            const workoutId = await knex('workouts').where('name', Dir).select('id').first();
+            const exerciseId = await knex('exsercises').where('name', Name).select('id').first();
+            console.log(workoutId)
+            console.log(Name);
+            console.log(exerciseId)
+            // Check if workoutId and exerciseId are defined before accessing their id properties
+            if (workoutId && exerciseId) {
+              await knex('repeats').insert({
+                workout_id: workoutId.id,
+                exsercise_id: exerciseId.id,
+                duration: parseInt(Duration, 10),
+                repeats: parseInt(Repeats, 10),
+              });
+              console.log(`Inserted data for ${Dir} - ${Name}`);
+            } else {
+              console.error(`Skipping insertion for ${Dir} - ${Name}. Workout or Exercise not found.`);
+            }
+          }
+        } catch (csvError) {
+          console.error(`Error reading CSV file ${csvFile}: ${csvError.message}`);
+        }
+      }
     }
   } catch (err) {
     console.error(err);
   }
+
+  
+
 };

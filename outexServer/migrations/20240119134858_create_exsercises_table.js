@@ -3,11 +3,9 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("exercises", function (table) {
+  return knex.schema.createTable("exsercises", function (table) {
     table.increments("id").primary();
     table.string("name").notNullable();
-    table.string("duration");
-    table.integer("repetitions");
     table.string("video_url");
   });
 };
@@ -17,5 +15,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("exercises");
+  return knex.schema.dropTable("exsercises");
 };
