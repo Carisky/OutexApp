@@ -57,8 +57,12 @@ class APIhendler {
   static async getWorkouts(){
     try {
       const response = await axios.get(`${host}/workouts`)
-      console.log(response.data);
-      return response.data;
+      
+      const workouts = response.data
+      workouts.map((workout)=>{
+        workout.image_url = `${host}/${workout.image_url}`
+      })
+      return workouts;
     } catch (error) {
       console.error("error in data change:", error);
     }
