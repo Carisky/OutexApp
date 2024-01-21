@@ -4,20 +4,33 @@ import { View, StyleSheet, FlatList, TouchableOpacity, Image } from "react-nativ
 import { SafeAreaView } from "react-native-safe-area-context";
 import PageSettingsLayout from "../PageSettigsLayout/PageSettigsLayout";
 import NavMenu from "../../components/NavMenu";
+import APIhendler from "../../api/APIhendler";
+import WorkoutPreview from "./WorkoutPreview";
 
 const WorkoutsPage = ({ navigation }) => {
+
+  const [workouts,setWorkouts] = useState([]);
+  
+  useEffect(() => {
+
+    async function fetchData(){
+      const workouts = await APIhendler.getWorkouts()
+      setWorkouts(workouts);
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <PageSettingsLayout navigation={navigation}>
       <SafeAreaView style={styles.container}>
-        <View style={styles.view}>
-        <Image
-            style={styles.workoutImage}
-            source={{
-              uri: 'http://localhost:3006/public/uploads/Trainings/Training_1/Training_1.jpg',
-            }}
-          />
-        </View>
+      <FlatList
+          style={styles.list}
+          data={workouts}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => <WorkoutPreview Workout={item} />}
+          contentContainerStyle={styles.flatListContainer}
+        />
         <NavMenu navigation={navigation} />
       </SafeAreaView>
     </PageSettingsLayout>
@@ -34,6 +47,10 @@ const styles = StyleSheet.create({
   },
   workoutItem: {
     marginBottom: 20,
+  },
+  list:{
+    marginTop:"20px",
+    marginBottom:"20px"
   },
   workoutImage: {
     height:"200px",

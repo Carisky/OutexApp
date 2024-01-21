@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "react-native-paper";
 
 import Messager from "../components/Messager"
-import APIhendler from "../api/APIhandler";
+import APIhendler from "../api/APIhendler";
 
 
 const LoginPage = ({ navigation }) => {

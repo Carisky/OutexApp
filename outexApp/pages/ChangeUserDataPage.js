@@ -8,7 +8,7 @@ import { FormBuilder } from "react-native-paper-form-builder";
 import { DatePickerModal } from "react-native-paper-dates";
 import { Button } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
-import APIhendler from "../api/APIhandler";
+import APIhendler from "../api/APIhendler";
 import { decode } from "base-64";
 
 const ChangeUserDataPage = ({ navigation }) => {

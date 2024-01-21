@@ -54,6 +54,14 @@ class APIhendler {
     }
   }
   
-
+  static async getWorkouts(){
+    try {
+      const response = await axios.get(`${host}/workouts`)
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("error in data change:", error);
+    }
+  }
 }
 export default APIhendler;

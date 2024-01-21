@@ -16,7 +16,7 @@ const knex = Knex(knexConfig.development);
 Model.knex(knex);
 
 const UserController = require('./routes/UserController.js')
-const VideController = require('./routes/VideoController.js')
+const WorkoutController = require('./routes/WorkoutController.js')
 
 // Указывает Express использовать статические файлы из директории 'public'
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
 app.use('/',UserController)
-app.use('/',VideController)
+app.use('/',WorkoutController)
 
 app.get('/', (req, res) => {
   res.send('Server UP');

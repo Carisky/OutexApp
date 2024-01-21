@@ -7,7 +7,7 @@ import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { FormBuilder } from "react-native-paper-form-builder";
 import { useForm } from "react-hook-form";
 import { Button } from "react-native-paper";
-import APIhendler from "../api/APIhandler";
+import APIhendler from "../api/APIhendler";
 import Messager from "../components/Messager";
 
 const RegisterPage = ({ navigation }) => {
