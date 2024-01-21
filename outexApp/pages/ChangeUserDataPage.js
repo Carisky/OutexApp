@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { Text, View, Image } from "react-native";
+import { View, Image } from "react-native";
+import { Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import GoBack from "../components/GoBack";

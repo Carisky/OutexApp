@@ -1,4 +1,5 @@
-import { View, Image, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Text } from "react-native-paper";
 import { connect } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
@@ -32,10 +33,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: "20px",
+    marginBottom:"20px",
     width:"100%"
   },
   touchLayout:{
-    width:"50%"
+    margin:"auto",
+    width:"45%",
+    backgroundColor:"grey",
+    borderRadius:"10px"
   },
   workoutImage: {
     height: "100px",

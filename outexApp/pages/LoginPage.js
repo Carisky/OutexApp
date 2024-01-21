@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { setUser } from "../redux/actions";
 import { useDispatch } from 'react-redux';
 
-import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { Text } from "react-native-paper";
 import { FormBuilder } from "react-native-paper-form-builder";
 import { useForm } from "react-hook-form";
 import { Button } from "react-native-paper";

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   list:{
     marginTop:"20px",
-    marginBottom:"80px"
+    marginBottom:"80px",
   },
   workoutImage: {
     height:"200px",

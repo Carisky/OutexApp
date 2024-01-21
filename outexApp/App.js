@@ -1,7 +1,7 @@
 //app js
 import { StyleSheet} from 'react-native';
 import { Provider as StoreProvider } from 'react-redux';
-import { PaperProvider, DarkTheme, DefaultTheme } from 'react-native-paper';
+import { DefaultTheme, MD3DarkTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -22,13 +22,20 @@ import WorkoutDetailsPage from './pages/Workouts/WorkoutDetailsPage';
 
 export default function App() {
 
-
+  const theme = {
+    ...MD3DarkTheme, // Use DarkTheme from react-native-paper
+    roundness: 2,
+    colors: {
+      ...MD3DarkTheme.colors,
+      // Customize colors if needed
+    },
+  };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
 
       <StoreProvider store={store}>
-        <PaperProvider>
+        <PaperProvider theme={theme}>
 
         <Stack.Navigator
         screenOptions={{

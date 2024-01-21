@@ -1,12 +1,13 @@
 // Import necessary dependencies
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { Text } from "react-native-paper";
 import GoBack from "../../components/GoBack";
 
 const WorkoutDetailsPage = ({ route, navigation }) => {
   // Extract the workoutId from the route params
   const { workoutId } = route.params;
-  
+
   return (
     <View>
       <GoBack navigation={navigation}/>
