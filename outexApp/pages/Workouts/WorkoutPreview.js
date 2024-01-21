@@ -1,29 +1,48 @@
-import { View, Image,StyleSheet } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { connect } from "react-redux";
-const WorkoutsPreview = ({Workout}) => {
-    return(
-        <View style={styles.view}>
-        <Image
-            style={styles.workoutImage}
-            source={{ uri: `http://localhost:3006/${Workout.image_url}` }}
-          />
-        </View>
-    )
-}
+import { useNavigation } from "@react-navigation/native";
+
+const WorkoutsPreview = ({ Workout }) => {
+  const navigation = useNavigation();
+
+  const navigateToWorkoutDetails = () => {
+    // Navigate to the WorkoutDetailsPage with the workoutId
+    navigation.navigate('WorkoutDetails', { workoutId: Workout.id });
+  };
+
+  return (
+    <TouchableOpacity
+        style={styles.touchLayout}
+      onPress={navigateToWorkoutDetails}
+    >
+      <View style={styles.view}>
+        <Image style={styles.workoutImage} source={Workout.image_url} />
+        <Text style={{
+            fontSize:"20px",
+        }}>{Workout.name}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
-    view:{
-      minHeight:'100%',
-      display:"flex",
-      justifyContent:"center",
-      alignItems:"center"
-    },
-    workoutImage: {
-      height:"200px",
-      width: "200px",
-      borderRadius: 10,
-      marginTop:"20px"
-    },
-  });
+  view: {
+    display: "flex",
+    flexDirection:"column",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "20px",
+    width:"100%"
+  },
+  touchLayout:{
+    width:"50%"
+  },
+  workoutImage: {
+    height: "100px",
+    width: "100px",
+    borderRadius: 10,
+
+  },
+});
 
 export default connect(null)(WorkoutsPreview);

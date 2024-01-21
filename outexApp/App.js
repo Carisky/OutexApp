@@ -18,6 +18,7 @@ import HomePage from './pages/HomePage';
 import WorkoutsPage from './pages/Workouts/WorkoutsPage';
 import ChangeUserDataPage from './pages/ChangeUserDataPage';
 import SettingsPage from './pages/SettingsPage';
+import WorkoutDetailsPage from './pages/Workouts/WorkoutDetailsPage';
 
 export default function App() {
 
@@ -46,6 +47,11 @@ export default function App() {
         <Stack.Screen name="ChangeUserData" component={ChangeUserDataPage} />
         <Stack.Screen name="SettingsPage" component={SettingsPage} />
 
+
+        <Stack.Screen name="WorkoutDetails" component={WorkoutDetailsPage} />
+
+
+        
       </Stack.Navigator>
 
         </PaperProvider>
