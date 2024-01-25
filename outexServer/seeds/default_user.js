@@ -3,20 +3,18 @@
  * @returns { Promise<void> } 
  */
 exports.seed = async function(knex) {
-  /**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
- */
-exports.seed = async function(knex) {
   // Insert a default user
-  await knex('users').insert({
-    email: 'root',
-    password: 'root',  // Replace with a hashed password
-    username: 'root',
-    description: 'Default user description',
-    // profileImage: ...,  // You can insert a binary image data here if needed
-    created_at: new Date(),
-    updated_at: new Date(),
-  });
-};
+  try {
+    await knex('users').insert({
+      email: 'email',
+      password: 'password',  // Replace with a hashed password
+      username: 'user',
+      description: 'Default user description',
+      profileImage: null,
+      created_at: new Date(),
+      updated_at: new Date(),
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
