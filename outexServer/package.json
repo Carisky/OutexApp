@@ -8,7 +8,9 @@
     "start": "nodemon index.js",
     "seed":"npx knex seed:run",
     "migrate":"npx knex migrate:latest",
-    "rollback":"npx knex migrate:rollback"
+    "rollback":"npx knex migrate:rollback",
+    "create_db":"node create_db.js",
+    "drop_db":"node drop_db.js"
   },
   "keywords": [],
   "author": "",
