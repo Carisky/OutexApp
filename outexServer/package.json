@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "seed":"npx knex seed:run",
-    "migrate":"npx knex migrate:latest",
-    "rollback":"npx knex migrate:rollback",
-    "create_db":"node create_db.js",
-    "drop_db":"node drop_db.js"
+    "seed": "npx knex seed:run",
+    "migrate": "npx knex migrate:latest",
+    "rollback": "npx knex migrate:rollback",
+    "create_db": "node create_db.js",
+    "drop_db": "node drop_db.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "cors": "^2.8.5",
     "csv-parse": "^4.8.8",
     "date-fns": "^2.30.0",
+    "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "format": "^0.2.2",
     "knex": "^3.0.1",
