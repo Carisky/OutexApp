@@ -12,8 +12,7 @@ exports.seed = async function(knex) {
   const initPath = '../public/uploads/Trainings'
 
   const trainingsPath = path.join(__dirname, initPath);
-  const publicPath = path.join(__dirname, '../public'); // Get the absolute path to the public directory
-
+  
   try {
     const trainingsDirs = await fs.readdir(trainingsPath);
 
@@ -25,9 +24,9 @@ exports.seed = async function(knex) {
       const csvFile = files.find(file => file.toLowerCase().endsWith('relations.csv'));
     
       try {
-        const relativeImagePath = path.relative(publicPath, jpgFile);
-        const imagePathWithPublic = path.join('public', relativeImagePath);
-        const correctedURL = imagePathWithPublic.replace(/\\/g, '/');
+        const relativePath = path.join(initPath, Dir, jpgFile);
+        const correctedURL = relativePath.replace(/\\/g, '/').replace('../','');
+
         await knex('workouts').insert({
           name: Dir,
           image_url: correctedURL,
