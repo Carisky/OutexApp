@@ -67,5 +67,16 @@ class APIhendler {
       console.error("error in data change:", error);
     }
   }
+
+  static async getWorkoutWithExsercises(id){
+    try {
+      const response = await axios.get(`${host}/workouts/exsercises/${id}`)
+      const workout = response.data
+      workout.image_url = `${host}/${workout.image_url}`
+      return workout;
+    } catch (error) {
+      console.error("error in data change:", error);
+    }
+  }
 }
 export default APIhendler;
