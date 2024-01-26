@@ -16,12 +16,21 @@ class User extends Model {
   }
   static async updateUserData(id, username, description, birthdate, profileImage) {
 
-    await this.query().where('id', id).update({
-      username,
-      description,
-      birthdate: birthdate,
-      profileImage,
-    });
+    if(profileImage!==null){
+      await this.query().where('id', id).update({
+        username,
+        description,
+        birthdate: birthdate,
+        profileImage,
+      });
+    }else{
+      await this.query().where('id', id).update({
+        username,
+        description,
+        birthdate: birthdate,
+      });
+    }
+    
   }
 }
 
