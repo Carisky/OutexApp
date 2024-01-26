@@ -27,7 +27,7 @@ exports.seed = async function(knex) {
     const exerciseNNData = readCsvFile(exerciseNNDataPath);
     const relativeVideoPath = path.relative(__dirname, exerciseVideoPath).replace("..\\", '');
     const correctedVideoURL = relativeVideoPath.replace(/\\/g, '/');
-    console.log(correctedVideoURL);
+    
 
     try {
       // Use await to wait for the insertion to complete
@@ -35,7 +35,9 @@ exports.seed = async function(knex) {
         name: exerciseFile,
         video_url: correctedVideoURL,
       });
+      console.log(correctedVideoURL);
       console.log(`Inserted data for ${exerciseFile}`);
+      console.log('\n')
     } catch (error) {
       console.error(`Error inserting data for ${exerciseFile}: ${error.message}`);
     }

@@ -16,5 +16,7 @@ exports.seed = async function(knex) {
     });
   } catch (error) {
     console.error(error);
+  }finally{
+    console.log("\n\n")
   }
 };
