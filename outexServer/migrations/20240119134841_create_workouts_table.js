@@ -6,6 +6,8 @@ exports.up = function (knex) {
   return knex.schema.createTable("workouts", function (table) {
     table.increments("id").primary();
     table.string("name").notNullable();
+    table.string("description").nullable();
+    table.string("info").nullable();
     table.string("image_url");
   });
 };
