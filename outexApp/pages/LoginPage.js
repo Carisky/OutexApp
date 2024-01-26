@@ -1,8 +1,6 @@
 // LoginPage.js
-import {React, useState} from "react";
-import { connect } from "react-redux";
-import { setUser } from "../redux/actions";
-import { useDispatch } from 'react-redux';
+import {React, useState, useEffect} from "react";
+import { useDispatch,useSelector } from 'react-redux';
 
 import { View, StyleSheet, ScrollView } from "react-native";
 import { Text } from "react-native-paper";
@@ -25,6 +23,15 @@ const LoginPage = ({ navigation }) => {
     },
     mode: "onChange",
   });
+
+  const user = useSelector((state) => state.userReducer.user);
+  
+  useEffect(() => {
+    if (Object.keys(user).length !== 0) {
+      navigation.navigate("HomePage")
+    }
+  }, []);
+
   return (
     <View style={styles.containerStyle}>
       <ScrollView contentContainerStyle={styles.scrollViewStyle}>
@@ -102,8 +109,5 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => ({
-  user: state.userReducer.user,
-});
 
 export default LoginPage;
