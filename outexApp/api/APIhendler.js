@@ -41,6 +41,17 @@ class APIhendler {
       }, 350);
     }
   }
+  static async passUser(user,navigation,dispatch){
+    const response = await axios.post(`${host}/user/login`, user);
+    dispatch(setUser(response.data.user));
+    if (Object.keys(user).length !== 0) {
+      navigation.navigate("HomePage")
+    }
+  }
+  static async refreshUser(user,dispatch){
+    const response = await axios.post(`${host}/user/login`, user);
+    dispatch(setUser(response.data.user));
+  }
   static async userChangeData(user) {
     try {
       const response = await axios.post(`${host}/user/changedata`, user, {

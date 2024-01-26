@@ -27,9 +27,7 @@ const LoginPage = ({ navigation }) => {
   const user = useSelector((state) => state.userReducer.user);
   
   useEffect(() => {
-    if (Object.keys(user).length !== 0) {
-      navigation.navigate("HomePage")
-    }
+    APIhendler.passUser(user,navigation,dispatch)
   }, []);
 
   return (

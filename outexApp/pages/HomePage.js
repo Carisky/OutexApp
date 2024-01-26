@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Image } from "react-native";
 import {
   Button,
   Text,
 } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { decode } from "base-64";
 import { StyleSheet } from "react-native";
 import NavMenu from "../components/NavMenu";
+import APIhendler from "../api/APIhendler";
 
 const HomePage = ({ navigation }) => {
   const user = useSelector((state) => state.userReducer.user);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    APIhendler.refreshUser(user,dispatch)
+  }, [user]);
+  
   const decodedImage = decode(user.profileImage);
 
   return (
@@ -34,6 +39,7 @@ const HomePage = ({ navigation }) => {
         )}
         <Text style={styles.text}>{`@${user.username}`}</Text>
         <Text style={styles.text}>{user.description}</Text>
+        <Text style={styles.text}>{user.birthdate}</Text>
         <Button
           onPress={() => {
             navigation.navigate("ChangeUserData");
