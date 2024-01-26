@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Image, StyleSheet, Pressable } from "react-native";
 import { Text } from "react-native-paper";
 import { connect } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -12,7 +12,7 @@ const WorkoutsPreview = ({ Workout }) => {
   };
 
   return (
-    <TouchableOpacity
+    <Pressable
         style={styles.touchLayout}
       onPress={navigateToWorkoutDetails}
     >
@@ -22,7 +22,7 @@ const WorkoutsPreview = ({ Workout }) => {
             fontSize:"20px",
         }}>{Workout.name}</Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
