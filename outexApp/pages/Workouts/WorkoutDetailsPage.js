@@ -1,9 +1,10 @@
 // Import necessary dependencies
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
-import { Text, Card } from "react-native-paper";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { Text, Card, Button } from "react-native-paper";
 import GoBack from "../../components/GoBack";
 import APIhendler from "../../api/APIhendler";
+import NavMenu from "../../components/NavMenu";
 
 const WorkoutDetailsPage = ({ route, navigation }) => {
   // Extract the workoutId from the route params
@@ -17,11 +18,14 @@ const WorkoutDetailsPage = ({ route, navigation }) => {
     fetchData();
   }, []);
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
       <GoBack navigation={navigation} />
-      <Card mode='outlined' style={{
-        margin:"10px"
-      }}>
+      <Card
+        mode="outlined"
+        style={{
+          margin: "10px",
+        }}
+      >
         <Card.Cover source={{ uri: workoutInfo && workoutInfo.image_url }} />
         <Card.Title title={workoutInfo && workoutInfo.description} />
 
@@ -29,8 +33,25 @@ const WorkoutDetailsPage = ({ route, navigation }) => {
           <Text variant="bodyMedium">{workoutInfo && workoutInfo.info}</Text>
         </Card.Content>
       </Card>
-    </View>
+      <Button
+        onPress={() => {
+          navigation.navigate("TrainingsPage", {
+            repeats: workoutInfo && workoutInfo.repeats,
+          });
+        }}
+      >
+        Workouts
+      </Button>
+      <NavMenu navigation={navigation} />
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    minHeight: "100%",
+    flex: 1,
+  },
+});
 
 export default WorkoutDetailsPage;

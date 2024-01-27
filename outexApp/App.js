@@ -24,6 +24,7 @@ import WorkoutsPage from "./pages/Workouts/WorkoutsPage";
 import ChangeUserDataPage from "./pages/ChangeUserDataPage";
 import SettingsPage from "./pages/SettingsPage";
 import WorkoutDetailsPage from "./pages/Workouts/WorkoutDetailsPage";
+import TrainingsPage from "./pages/Trainings/TrainingsPage";
 
 export default function App() {
   const theme = {
@@ -64,6 +65,11 @@ export default function App() {
               <Stack.Screen
                 name="WorkoutDetails"
                 component={WorkoutDetailsPage}
+              />
+
+              <Stack.Screen 
+                name="TrainingsPage"
+                component={TrainingsPage}  
               />
             </Stack.Navigator>
           </PaperProvider>
