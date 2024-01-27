@@ -13,16 +13,15 @@ const TrainingsPage = ({ route, navigation }) => {
   const [repeatIndex, setIndex] = useState(0);
 
   const goToPrev = () => {
-    if (repeatIndex!=0) {
-        setIndex(repeatIndex - 1);
+    if (repeatIndex != 0) {
+      setIndex(repeatIndex - 1);
     }
   };
 
   const goToNext = () => {
-    if (repeatIndex!=repeats.length-1) {
-        setIndex(repeatIndex + 1);
+    if (repeatIndex != repeats.length - 1) {
+      setIndex(repeatIndex + 1);
     }
-
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -30,10 +29,10 @@ const TrainingsPage = ({ route, navigation }) => {
       <Training repeat={repeats[repeatIndex]} />
 
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} onPress={goToPrev}>
+        <Button mode="contained-tonal" style={styles.button} onPress={goToPrev}>
           Back
         </Button>
-        <Button style={styles.button} onPress={goToNext}>
+        <Button mode="contained-tonal" style={styles.button} onPress={goToNext}>
           Next
         </Button>
       </View>
@@ -49,11 +48,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
+    width:"100%",
     display: "flex",
+    justifyContent: "center",
     flexDirection: "row",
   },
   button: {
-    width: "50%",
+    width:"45%",
+    margin:10,
   },
 });
 
