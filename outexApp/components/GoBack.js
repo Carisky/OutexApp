@@ -4,11 +4,18 @@ import { Button } from 'react-native-paper';
 
 const GoBack = ({ navigation, children }) => {
   return (
-    <View>
-      <Button onPress={() => navigation.goBack()}>Go Back</Button>
+    <View style={styles.buttonContainer}>
+      <Button mode='elevated' onPress={() => navigation.goBack()}>Go Back</Button>
       {children}
     </View>
   );
 };
-
+const styles = StyleSheet.create({
+  buttonContainer: {
+    marginLeft:"auto",
+    marginRight:"auto",
+    marginBottom:20,
+    width:"60%"
+  },
+});
 export default GoBack;
