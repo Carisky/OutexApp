@@ -49,6 +49,7 @@ const WorkoutDetailsPage = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop:40,
     minHeight: "100%",
     flex: 1,
   },

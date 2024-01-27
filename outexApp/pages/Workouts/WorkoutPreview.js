@@ -17,9 +17,9 @@ const WorkoutsPreview = ({ Workout }) => {
       onPress={navigateToWorkoutDetails}
     >
       <View style={styles.view}>
-        <Image style={styles.workoutImage} source={Workout.image_url} />
+        <Image style={styles.workoutImage} source={{uri:Workout.image_url}} />
         <Text style={{
-            fontSize:"20px",
+            fontSize:20,
         }}>{Workout.name}</Text>
       </View>
     </Pressable>
@@ -32,19 +32,21 @@ const styles = StyleSheet.create({
     flexDirection:"column",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "20px",
-    marginBottom:"20px",
+    marginTop: 20,
+    marginBottom:20,
     width:"100%"
   },
-  touchLayout:{
-    margin:"auto",
-    width:"45%",
-    backgroundColor:"grey",
-    borderRadius:"10px"
+  touchLayout: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "45%",
+    backgroundColor: "grey",
+    borderRadius: 10,
   },
+  
   workoutImage: {
-    height: "100px",
-    width: "100px",
+    height: 100,
+    width: 100,
     borderRadius: 10,
 
   },

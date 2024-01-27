@@ -47,15 +47,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   list:{
-    marginTop:"20px",
-    marginBottom:"80px",
+    marginTop: 20, 
+    marginBottom: 80, 
   },
-  workoutImage: {
-    height:"200px",
-    width: "200px",
-    height: 200,
-    borderRadius: 10,
-  },
+workoutImage: {
+  height: 200,
+  width: 200,
+  borderRadius: 10,
+},
   workoutTitle: {
     textAlign: "center",
     fontSize: 16,
