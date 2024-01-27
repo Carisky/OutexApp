@@ -1,5 +1,6 @@
 const { Model } = require('objection');
-const Exsercise = require('./Exsercise'); // Adjust the path based on your project structure
+const Repeat = require('./Repeat');
+ // Adjust the path based on your project structure
 
 class Workout extends Model {
   static get tableName() {
@@ -8,16 +9,12 @@ class Workout extends Model {
 
   static get relationMappings() {
     return {
-      exsercises: {
-        relation: Model.ManyToManyRelation,
-        modelClass: Exsercise,
+      repeats: {
+        relation: Model.HasManyRelation,
+        modelClass: Repeat,
         join: {
           from: 'workouts.id',
-          through: {
-            from: 'repeats.workout_id',
-            to: 'repeats.exsercise_id'
-          },
-          to: 'exsercises.id'
+          to: 'repeats.workout_id'
         }
       }
     };
@@ -31,7 +28,7 @@ class Workout extends Model {
   static async returnWorkoutWithExercises(id) {
     const workout = await this.query()
       .findById(id)
-      .withGraphFetched('exsercises');
+      .withGraphFetched('repeats.exercise');
     return workout;
   }
 }
